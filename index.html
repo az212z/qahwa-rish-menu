@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ريش · Riche Coffee · القائمة</title>
+<meta name="description" content="قائمة ريش · Riche Coffee · قهوة مختصة وحلا في حي السلامة بجدة. تصفّح المنيو واطلب عبر واتساب.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20140e;
+  --ink-soft:#5a4a40;
+  --paper:#f7f1e8;
+  --paper-2:#efe6d8;
+  --card:#fffdf9;
+  --wine:#9a2323;
+  --wine-2:#c23434;
+  --gold:#c69b52;
+  --line:rgba(32,20,14,.10);
+  --shadow:0 14px 40px -18px rgba(32,20,14,.45);
+  --radius:20px;
+  --wrap:520px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Tajawal',system-ui,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+/* desktop backdrop — phone-like column centered */
+.stage{
+  min-height:100vh;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(198,155,82,.18), transparent 60%),
+    radial-gradient(900px 500px at -10% 20%, rgba(154,35,35,.10), transparent 60%),
+    linear-gradient(160deg,#2a1a12,#4a2c1e 60%,#2a1a12);
+  display:flex;justify-content:center;
+}
+.wrap{
+  width:100%;max-width:var(--wrap);
+  background:var(--paper);
+  position:relative;
+  box-shadow:0 0 80px -20px rgba(0,0,0,.6);
+  min-height:100vh;
+  overflow:hidden;
+}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;color:#fff;padding:0}
+.hero-img{
+  position:relative;height:clamp(300px,58vw,360px);overflow:hidden;
+}
+.hero-img img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);animation:kb 18s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.06) translateY(0)}to{transform:scale(1.14) translateY(-10px)}}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,10,6,.15) 0%,rgba(20,10,6,.25) 40%,rgba(30,18,12,.92) 100%)}
+.hero-top{
+  position:absolute;top:0;left:0;right:0;z-index:3;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 20px;padding-top:max(18px,env(safe-area-inset-top));
+}
+.rate-pill{
+  background:rgba(20,12,8,.5);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:999px;padding:7px 13px;font-size:13px;font-weight:700;
+  display:flex;align-items:center;gap:6px
+}
+.rate-pill .star{color:#ffca57}
+.hero-city{font-size:12.5px;font-weight:500;opacity:.85;display:flex;align-items:center;gap:5px}
+.hero-body{
+  position:absolute;bottom:0;left:0;right:0;z-index:3;
+  padding:0 22px 22px;text-align:center;
+}
+.logo-mark{width:78px;height:78px;margin:0 auto 12px;position:relative;
+  display:flex;align-items:center;justify-content:center;
+  animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+.logo-mark svg{width:100%;height:100%;filter:drop-shadow(0 6px 14px rgba(0,0,0,.4))}
+.hero h1{font-size:44px;font-weight:800;letter-spacing:-1px;line-height:1;
+  animation:rise .8s .06s cubic-bezier(.2,.8,.2,1) both}
+.hero .latin{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:15px;
+  letter-spacing:5px;text-transform:uppercase;opacity:.8;margin-top:8px;
+  animation:rise .8s .12s cubic-bezier(.2,.8,.2,1) both}
+.hero .tagline{font-size:14.5px;font-weight:500;opacity:.9;margin-top:12px;max-width:320px;margin-inline:auto;
+  animation:rise .8s .18s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* ---------- SEARCH ---------- */
+.searchwrap{padding:16px 18px 6px;background:var(--paper)}
+.search{
+  display:flex;align-items:center;gap:10px;
+  background:var(--card);border:1px solid var(--line);
+  border-radius:14px;padding:12px 15px;box-shadow:0 4px 14px -10px rgba(32,20,14,.3)
+}
+.search svg{width:19px;height:19px;flex:none;opacity:.5}
+.search input{border:none;outline:none;background:none;font-family:inherit;
+  font-size:15.5px;color:var(--ink);width:100%}
+.search input::placeholder{color:var(--ink-soft);opacity:.7}
+
+/* ---------- STICKY CATEGORY BAR ---------- */
+.catbar{
+  position:sticky;top:0;z-index:20;background:rgba(247,241,232,.9);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
+  padding:12px 0;
+}
+.chips{display:flex;gap:9px;overflow-x:auto;padding:0 18px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{
+  flex:none;border:1px solid var(--line);background:var(--card);
+  color:var(--ink-soft);font-family:inherit;font-size:14px;font-weight:700;
+  padding:9px 16px;border-radius:999px;cursor:pointer;white-space:nowrap;
+  transition:all .28s cubic-bezier(.2,.8,.2,1)
+}
+.chip.active{background:var(--wine);color:#fff;border-color:var(--wine);
+  box-shadow:0 8px 18px -8px rgba(154,35,35,.6);transform:translateY(-1px)}
+
+/* ---------- SECTIONS ---------- */
+main{padding:8px 18px 130px}
+.section{margin-top:26px;scroll-margin-top:70px}
+.sec-head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+.sec-head h2{font-size:23px;font-weight:800;letter-spacing:-.5px}
+.sec-head .lat{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--gold);font-weight:600}
+.sec-head .rule{flex:1;height:1px;background:var(--line)}
+
+.card{
+  display:flex;gap:14px;background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius);padding:12px;margin-bottom:13px;
+  box-shadow:0 6px 20px -16px rgba(32,20,14,.5);
+  opacity:0;transform:translateY(22px);
+  transition:opacity .55s cubic-bezier(.2,.8,.2,1),transform .55s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease;
+}
+.card.in{opacity:1;transform:none}
+.card:active{transform:scale(.99)}
+.thumb{
+  width:92px;height:92px;flex:none;border-radius:15px;overflow:hidden;position:relative;
+  background:var(--paper-2)
+}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb.ph{display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(150deg,var(--paper-2),#e3d5c1)}
+.thumb.ph svg{width:40px;height:40px;opacity:.55;color:var(--wine)}
+.info{flex:1;min-width:0;display:flex;flex-direction:column}
+.info .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.info h3{font-size:16.5px;font-weight:700;line-height:1.3}
+.price{font-size:15px;font-weight:800;color:var(--wine);white-space:nowrap;flex:none}
+.price .r{font-family:'Cormorant Garamond',serif;font-size:12px;font-weight:600;opacity:.7}
+.price.ask{color:var(--ink-soft);font-size:12.5px;font-weight:700}
+.info p{font-size:13px;color:var(--ink-soft);margin-top:3px;line-height:1.5}
+.card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:8px}
+.tag{font-size:11px;font-weight:700;color:var(--gold);border:1px solid rgba(198,155,82,.4);
+  border-radius:999px;padding:2px 9px}
+.add{
+  margin-inline-start:auto;width:34px;height:34px;border-radius:11px;border:none;
+  background:var(--wine);color:#fff;font-size:20px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;line-height:1;
+  transition:transform .2s,background .2s;box-shadow:0 6px 14px -8px rgba(154,35,35,.7)
+}
+.add:active{transform:scale(.86)}
+.add.pop{animation:pop .35s}
+@keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.35);background:var(--gold)}100%{transform:scale(1)}}
+
+.no-results{text-align:center;color:var(--ink-soft);padding:40px 20px;font-weight:500;display:none}
+
+/* honesty note */
+.note{font-size:12px;color:var(--ink-soft);text-align:center;margin-top:30px;line-height:1.7;opacity:.85}
+.note a{color:var(--wine);text-decoration:none;font-weight:700}
+
+/* ---------- CART FAB + SHEET ---------- */
+.fab{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(120px);
+  z-index:40;width:min(var(--wrap) - 40px,480px);
+  background:var(--wine);color:#fff;border:none;border-radius:16px;
+  padding:15px 20px;font-family:inherit;font-size:15.5px;font-weight:800;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  box-shadow:0 16px 34px -12px rgba(154,35,35,.75);
+  transition:transform .4s cubic-bezier(.2,.9,.2,1)
+}
+.fab.show{transform:translateX(-50%) translateY(0)}
+.fab .c-count{background:#fff;color:var(--wine);border-radius:999px;min-width:26px;height:26px;
+  display:inline-flex;align-items:center;justify-content:center;font-size:14px;padding:0 7px}
+.fab .c-right{display:flex;align-items:center;gap:9px}
+.wa-ic{width:20px;height:20px}
+
+.overlay{position:fixed;inset:0;background:rgba(20,12,8,.5);backdrop-filter:blur(3px);
+  z-index:50;opacity:0;pointer-events:none;transition:opacity .3s}
+.overlay.open{opacity:1;pointer-events:auto}
+.sheet{
+  position:fixed;left:50%;bottom:0;transform:translateX(-50%) translateY(100%);
+  z-index:60;width:100%;max-width:var(--wrap);
+  background:var(--paper);border-radius:26px 26px 0 0;
+  padding:8px 20px calc(22px + env(safe-area-inset-bottom));
+  max-height:82vh;display:flex;flex-direction:column;
+  transition:transform .42s cubic-bezier(.2,.9,.2,1);box-shadow:0 -20px 50px -20px rgba(0,0,0,.4)
+}
+.sheet.open{transform:translateX(-50%) translateY(0)}
+.grab{width:44px;height:5px;border-radius:999px;background:var(--line);margin:8px auto 12px}
+.sheet h2{font-size:21px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.sheet .sub{font-size:12.5px;color:var(--ink-soft);margin-bottom:14px}
+.cart-list{overflow-y:auto;flex:1;margin:0 -4px;padding:0 4px}
+.crow{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.crow .cn{flex:1;min-width:0}
+.crow .cn b{font-size:15px;font-weight:700;display:block}
+.crow .cn span{font-size:12.5px;color:var(--ink-soft)}
+.qty{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);
+  border-radius:12px;padding:5px 6px}
+.qty button{width:28px;height:28px;border:none;background:none;font-size:19px;font-weight:800;
+  color:var(--wine);cursor:pointer;line-height:1;border-radius:8px;transition:background .15s}
+.qty button:active{background:var(--paper-2)}
+.qty span{min-width:18px;text-align:center;font-weight:800;font-size:15px}
+.cart-empty{text-align:center;color:var(--ink-soft);padding:40px 10px;font-weight:500}
+.totalrow{display:flex;justify-content:space-between;align-items:center;padding:16px 2px 12px;font-weight:800;font-size:18px}
+.totalrow .tprice{color:var(--wine)}
+.send{
+  width:100%;background:#25a35a;color:#fff;border:none;border-radius:15px;
+  padding:16px;font-family:inherit;font-size:16px;font-weight:800;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  box-shadow:0 12px 26px -12px rgba(37,163,90,.7);transition:transform .2s
+}
+.send:active{transform:scale(.98)}
+.send:disabled{background:#b8b0a5;box-shadow:none;cursor:not-allowed}
+
+/* floating whatsapp (when cart empty) */
+.wa-float{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(0);
+  z-index:35;width:min(var(--wrap) - 40px,480px);
+  background:#25a35a;color:#fff;border-radius:16px;padding:14px;
+  font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;
+  text-decoration:none;box-shadow:0 14px 30px -14px rgba(37,163,90,.7);
+  transition:transform .4s cubic-bezier(.2,.9,.2,1)
+}
+.wa-float.hide{transform:translateX(-50%) translateY(120px)}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .card{opacity:1;transform:none}
+  .hero-img img{transform:none}
+}
+</style>
+</head>
+<body>
+<div class="stage">
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-img"><img src="img/hero.jpg" alt="أجواء ريش كوفي" fetchpriority="high"></div>
+    <div class="hero-top">
+      <div class="rate-pill"><span class="star">★</span> ٤٫٧ · ٢٣٦ تقييم</div>
+      <div class="hero-city">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 1 1 14 0c0 4.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        جدة · حي السلامة
+      </div>
+    </div>
+    <div class="hero-body">
+      <div class="logo-mark">
+        <svg viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="47" stroke="#fff" stroke-width="1.5" opacity=".7"/>
+          <circle cx="50" cy="50" r="47" stroke="#c69b52" stroke-width="1.5" stroke-dasharray="4 6" opacity=".9"/>
+          <path d="M32 66c0-18 8-30 18-38-2 12 2 20 10 24-6 10-16 16-28 14Z" fill="#c23434"/>
+          <path d="M50 28c6 8 8 20 2 30" stroke="#fff" stroke-width="1.4" opacity=".8"/>
+        </svg>
+      </div>
+      <h1>ريش</h1>
+      <div class="latin">Riche Coffee</div>
+      <p class="tagline">قهوة مختصة وأجواء دافئة في قلب حي السلامة. منيو تختاره وتطلبه بلمسة.</p>
+    </div>
+  </header>
+
+  <!-- SEARCH -->
+  <div class="searchwrap">
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+      <input id="q" type="text" inputmode="search" placeholder="ابحث في المنيو… قهوة، برجر، كرواسون">
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <nav class="catbar">
+    <div class="chips" id="chips"></div>
+  </nav>
+
+  <!-- MENU -->
+  <main id="menu"></main>
+
+  <div class="no-results" id="noRes">ما لقينا شيء بهذا الاسم، جرّب كلمة ثانية ☕</div>
+
+</div><!--/wrap-->
+</div><!--/stage-->
+
+<!-- WhatsApp float (empty cart) -->
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener">
+  <svg class="wa-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
+  تواصل معنا عبر واتساب
+</a>
+
+<!-- Cart FAB -->
+<button class="fab" id="fab">
+  <span class="c-left">عرض الطلب</span>
+  <span class="c-right"><span id="fabTotal"></span><span class="c-count" id="fabCount">0</span></span>
+</button>
+
+<!-- Overlay + Sheet -->
+<div class="overlay" id="overlay"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true">
+  <div class="grab"></div>
+  <h2>طلبك من ريش ☕</h2>
+  <div class="sub">راجع طلبك، ثم أرسله لنا عبر واتساب ونجهّزه لك.</div>
+  <div class="cart-list" id="cartList"></div>
+  <div class="totalrow" id="totalRow" style="display:none">
+    <span>الإجمالي التقديري</span>
+    <span class="tprice" id="cartTotal">٠ ﷼</span>
+  </div>
+  <button class="send" id="send">
+    <svg class="wa-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
+    أرسل الطلب عبر واتساب
+  </button>
+</div>
+
+<script>
+const WA="966566659962";
+// Real prices confirmed from the cafe's own receipt (كرتادو 15, هوت شوكلت ماتيلدا 29).
+// Other items are clearly visible in the cafe's own photos — price shown as "السعر عند الطلب" (never invented).
+const CATS=[
+  {id:"coffee",  name:"قهوة",         lat:"Coffee"},
+  {id:"cold",    name:"مشروبات باردة",lat:"Cold"},
+  {id:"sweets",  name:"حلا",          lat:"Sweets"},
+  {id:"food",    name:"أكل",          lat:"Food"},
+];
+const ITEMS=[
+  // COFFEE
+  {c:"coffee", n:"كرتادو", d:"جرعة إسبريسو مختصة مع لمسة حليب، متوازنة وغنية.", price:15, img:null, tag:"مختص", ic:"cup"},
+  {c:"coffee", n:"فلات وايت", d:"إسبريسو وحليب مخملي يُقدَّم في كوب ريش الخشبي المميّز.", price:null, img:"img/hero.jpg", tag:"الأكثر طلباً", ic:"cup"},
+  {c:"coffee", n:"لاتيه", d:"قهوة كريمية ناعمة مع رسمة لاتيه أنيقة.", price:null, img:null, ic:"cup"},
+  {c:"coffee", n:"كابتشينو", d:"طبقة رغوة كثيفة فوق إسبريسو دافئ.", price:null, img:null, ic:"cup"},
+  {c:"coffee", n:"هوت شوكلت ماتيلدا", d:"شوكولاتة ساخنة غنية بنكهة ماتيلدا، توقيع البيت.", price:29, img:null, tag:"توقيع البيت", ic:"cocoa"},
+  {c:"coffee", n:"V60", d:"تقطير يدوي يبرز نكهات حبة القهوة المختصة.", price:null, img:null, ic:"cup"},
+
+  // COLD
+  {c:"cold", n:"آيس لاتيه", d:"لاتيه مثلّج منعش على ثلج بارد.", price:null, img:"img/iced.jpg", tag:"منعش", ic:"ice"},
+  {c:"cold", n:"آيس أمريكانو", d:"إسبريسو وماء بارد، بسيط ونقي.", price:null, img:null, ic:"ice"},
+  {c:"cold", n:"آيس سبانيش لاتيه", d:"لاتيه مثلّج بحليب محلّى بطعم غني.", price:null, img:null, ic:"ice"},
+
+  // SWEETS
+  {c:"sweets", n:"كوب الشوكولاتة", d:"حلا شوكولاتة طبقات مع رقائق شوكولاتة في كوب ريش.", price:null, img:"img/dessert.jpg", tag:"الأكثر طلباً", ic:"cake"},
+  {c:"sweets", n:"بول الأساي", d:"وعاء أساي وجرانولا وفواكه، بداية يوم منعشة.", price:null, img:null, ic:"cake"},
+
+  // FOOD
+  {c:"food", n:"برجر ريش (دبل تشيز)", d:"لحم طري بطبقتين، جبن ذائب، خس وصوص خاص في خبز مقرمش.", price:null, img:"img/burger.jpg", tag:"الأكثر طلباً", ic:"food"},
+  {c:"food", n:"برجر لحم مع بطاطس", d:"برجر لحم مشوي يُقدّم مع بطاطس مموّجة.", price:null, img:"img/burger2.jpg", ic:"food"},
+  {c:"food", n:"كرواسون البيض", d:"كرواسون محشو بيض طري وخضار، فطور دسم لذيذ.", price:null, img:"img/croissant.jpg", tag:"فطور", ic:"food"},
+  {c:"food", n:"بيتزا", d:"عجينة طازجة بطبقة جبن سخية وخضار.", price:null, img:"img/spread.jpg", ic:"food"},
+  {c:"food", n:"بطاطس مموّجة", d:"بطاطس مقرمشة تُقدّم مع صوص جانبي.", price:null, img:null, ic:"food"},
+];
+
+// arabic-indic numerals
+const AR="٠١٢٣٤٥٦٧٨٩";
+const toAr=n=>String(n).replace(/[0-9]/g,d=>AR[+d]);
+const riyal='<span class="r">﷼</span>';
+
+const ICONS={
+ cup:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h11v5a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5V8Z"/><path d="M16 9h2.2a2.3 2.3 0 0 1 0 4.6H16"/><path d="M8 3s-.7 1 0 2M11 3s-.7 1 0 2"/></svg>',
+ cocoa:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h12v4a6 6 0 0 1-6 6 6 6 0 0 1-6-6V8Z"/><path d="M17 9h2a2 2 0 0 1 0 4h-2"/><path d="M9 4c1 .6 1 1.4 0 2M13 4c1 .6 1 1.4 0 2"/></svg>',
+ ice:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 7h10l-1.2 12.5a1.5 1.5 0 0 1-1.5 1.4H9.7a1.5 1.5 0 0 1-1.5-1.4L7 7Z"/><path d="M6 7h12"/><path d="M9 11h6M9.4 15h5.2"/></svg>',
+ cake:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 21h14"/><path d="M6 21v-6a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v6"/><path d="M6 15c1.5 1.4 2.5 1.4 4 0 1.5 1.4 2.5 1.4 4 0 1.5 1.4 2.5 1.4 4 0"/><path d="M12 8V6M12 4v.01"/></svg>',
+ food:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 11h16a8 8 0 0 0-16 0Z"/><path d="M3 14h18"/><path d="M6 17h12"/></svg>',
+};
+
+const cart={};   // key -> {item, qty}
+const $=s=>document.querySelector(s);
+const menuEl=$("#menu"), chipsEl=$("#chips");
+
+// build chips
+const allChips=[{id:"all",name:"الكل"}].concat(CATS);
+allChips.forEach((c,i)=>{
+  const b=document.createElement("button");
+  b.className="chip"+(i===0?" active":"");
+  b.textContent=c.name; b.dataset.cat=c.id;
+  b.onclick=()=>selectCat(c.id,b);
+  chipsEl.appendChild(b);
+});
+
+// build sections
+CATS.forEach(cat=>{
+  const items=ITEMS.filter(x=>x.c===cat.id);
+  if(!items.length) return;
+  const sec=document.createElement("section");
+  sec.className="section"; sec.id="sec-"+cat.id; sec.dataset.cat=cat.id;
+  sec.innerHTML=`<div class="sec-head"><h2>${cat.name}</h2><span class="lat">${cat.lat}</span><span class="rule"></span></div>`;
+  items.forEach((it,idx)=>{
+    const key=cat.id+"-"+idx;
+    it.key=key;
+    const card=document.createElement("article");
+    card.className="card"; card.dataset.name=it.n; card.dataset.cat=cat.id;
+    const thumb= it.img
+      ? `<div class="thumb"><img loading="lazy" src="${it.img}" alt="${it.n}"></div>`
+      : `<div class="thumb ph">${ICONS[it.ic]||ICONS.cup}</div>`;
+    const priceHtml= it.price!=null
+      ? `<div class="price">${toAr(it.price)} ${riyal}</div>`
+      : `<div class="price ask">السعر عند الطلب</div>`;
+    card.innerHTML=`
+      ${thumb}
+      <div class="info">
+        <div class="top"><h3>${it.n}</h3>${priceHtml}</div>
+        <p>${it.d}</p>
+        <div class="card-foot">
+          ${it.tag?`<span class="tag">${it.tag}</span>`:""}
+          <button class="add" data-key="${key}" aria-label="أضف ${it.n}">＋</button>
+        </div>
+      </div>`;
+    sec.appendChild(card);
+    card.querySelector(".add").onclick=e=>{addToCart(it);e.currentTarget.classList.remove("pop");void e.currentTarget.offsetWidth;e.currentTarget.classList.add("pop");};
+  });
+  menuEl.appendChild(sec);
+});
+
+// scroll reveal (with safety net — content must never stay invisible)
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.08,rootMargin:"0px 0px -5% 0px"});
+document.querySelectorAll(".card").forEach(c=>io.observe(c));
+// reveal any card already in viewport on load + hard fallback
+function revealVisible(){
+  document.querySelectorAll(".card:not(.in)").forEach(c=>{
+    const r=c.getBoundingClientRect();
+    if(r.top<window.innerHeight*1.05){c.classList.add("in");io.unobserve(c);}
+  });
+}
+requestAnimationFrame(revealVisible);
+window.addEventListener("scroll",revealVisible,{passive:true});
+setTimeout(()=>document.querySelectorAll(".card:not(.in)").forEach(c=>c.classList.add("in")),2500);
+
+// category select
+let manualScroll=false;
+function selectCat(id,btn){
+  document.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
+  btn.classList.add("active");
+  btn.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"});
+  if(id==="all"){window.scrollTo({top:0,behavior:"smooth"});return;}
+  manualScroll=true;
+  const sec=$("#sec-"+id);
+  const y=sec.getBoundingClientRect().top+window.scrollY-64;
+  window.scrollTo({top:y,behavior:"smooth"});
+  setTimeout(()=>manualScroll=false,700);
+}
+// scroll-spy
+const spy=new IntersectionObserver((es)=>{
+  if(manualScroll||$("#q").value.trim())return;
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      const id=e.target.dataset.cat;
+      document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("active",c.dataset.cat===id));
+    }
+  });
+},{rootMargin:"-45% 0px -50% 0px"});
+document.querySelectorAll(".section").forEach(s=>spy.observe(s));
+
+// search
+$("#q").addEventListener("input",e=>{
+  const q=e.target.value.trim();
+  let any=false;
+  document.querySelectorAll(".card").forEach(c=>{
+    const match=!q||c.dataset.name.includes(q);
+    c.style.display=match?"":"none";
+    if(match)any=true;
+  });
+  document.querySelectorAll(".section").forEach(s=>{
+    const vis=[...s.querySelectorAll(".card")].some(c=>c.style.display!=="none");
+    s.style.display=vis?"":"none";
+  });
+  $("#noRes").style.display=any?"none":"block";
+});
+
+// ---- cart ----
+function addToCart(it){
+  if(!cart[it.key])cart[it.key]={item:it,qty:0};
+  cart[it.key].qty++;
+  renderCart();
+}
+function changeQty(key,delta){
+  if(!cart[key])return;
+  cart[key].qty+=delta;
+  if(cart[key].qty<=0)delete cart[key];
+  renderCart();
+}
+function renderCart(){
+  const keys=Object.keys(cart);
+  const count=keys.reduce((s,k)=>s+cart[k].qty,0);
+  // has any real-priced item?
+  let total=0,hasPrice=false;
+  keys.forEach(k=>{const it=cart[k].item;if(it.price!=null){total+=it.price*cart[k].qty;hasPrice=true;}});
+
+  $("#fabCount").textContent=toAr(count);
+  $("#fab").classList.toggle("show",count>0);
+  $("#waFloat").classList.toggle("hide",count>0);
+  $("#fabTotal").textContent=hasPrice?`${toAr(total)} ﷼`:"";
+
+  const list=$("#cartList");
+  if(!count){
+    list.innerHTML='<div class="cart-empty">سلتك فارغة، أضف ما يعجبك من المنيو ☕</div>';
+    $("#totalRow").style.display="none";
+    $("#send").disabled=true;
+    return;
+  }
+  $("#send").disabled=false;
+  list.innerHTML="";
+  keys.forEach(k=>{
+    const {item,qty}=cart[k];
+    const row=document.createElement("div");row.className="crow";
+    const pr= item.price!=null ? `${toAr(item.price*qty)} ﷼` : "السعر عند الطلب";
+    row.innerHTML=`
+      <div class="cn"><b>${item.n}</b><span>${pr}</span></div>
+      <div class="qty">
+        <button aria-label="ناقص" data-k="${k}" data-d="-1">−</button>
+        <span>${toAr(qty)}</span>
+        <button aria-label="زائد" data-k="${k}" data-d="1">＋</button>
+      </div>`;
+    list.appendChild(row);
+  });
+  list.querySelectorAll(".qty button").forEach(b=>b.onclick=()=>changeQty(b.dataset.k,+b.dataset.d));
+  $("#totalRow").style.display=hasPrice?"flex":"none";
+  $("#cartTotal").textContent=`${toAr(total)} ﷼`;
+}
+
+// sheet open/close
+function openSheet(){$("#overlay").classList.add("open");$("#sheet").classList.add("open");}
+function closeSheet(){$("#overlay").classList.remove("open");$("#sheet").classList.remove("open");}
+$("#fab").onclick=openSheet;
+$("#overlay").onclick=closeSheet;
+
+// build WhatsApp message
+function waLink(){
+  const keys=Object.keys(cart);
+  let lines=["السلام عليكم، أبغى أطلب من ريش ☕",""];
+  let total=0,hasPrice=false;
+  keys.forEach(k=>{
+    const {item,qty}=cart[k];
+    let l=`• ${item.n} ×${toAr(qty)}`;
+    if(item.price!=null){l+=` · ${toAr(item.price*qty)} ﷼`;total+=item.price*qty;hasPrice=true;}
+    lines.push(l);
+  });
+  if(hasPrice){lines.push("");lines.push(`الإجمالي التقديري: ${toAr(total)} ﷼`);}
+  lines.push("");lines.push("شكراً 🌿");
+  return `https://wa.me/${WA}?text=`+encodeURIComponent(lines.join("\n"));
+}
+$("#send").onclick=()=>{if(!Object.keys(cart).length)return;window.open(waLink(),"_blank");};
+
+// empty-cart whatsapp float
+$("#waFloat").href=`https://wa.me/${WA}?text=`+encodeURIComponent("السلام عليكم، عندي استفسار عن ريش ☕");
+
+renderCart();
+</script>
+</body>
+</html>
