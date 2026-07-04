@@ -624,7 +624,7 @@ function selectCat(id,btn){
   document.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
   btn.classList.add("active");
   syncIndToActive();
-  btn.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"});
+  {const _st=document.getElementById("chips");if(_st){const _s=_st.getBoundingClientRect(),_c=btn.getBoundingClientRect();_st.scrollBy({left:(_c.left+_c.width/2)-(_s.left+_s.width/2),behavior:"smooth"});}}
   if(id==="all"){window.scrollTo({top:0,behavior:"smooth"});return;}
   manualScroll=true;
   const sec=$("#sec-"+id);
